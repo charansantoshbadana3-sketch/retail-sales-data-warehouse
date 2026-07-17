@@ -1,0 +1,14 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Large raw data (keep out of git if source files are big)
+datasets/*.csv
+!datasets/README.md
+
+# Environment
+.env
