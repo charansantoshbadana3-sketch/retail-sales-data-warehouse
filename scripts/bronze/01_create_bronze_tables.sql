@@ -1,30 +1,31 @@
 -- ============================================================
--- Bronze Layer: Raw staging tables
--- Purpose: land source data exactly as received, no transformation
+-- Bronze Layer: Raw staging table
+-- Loads the Superstore CSV exactly as-is, one row per source row.
+-- Source: Kaggle Superstore Sales Dataset
 -- ============================================================
 
-DROP TABLE IF EXISTS bronze_orders;
-CREATE TABLE bronze_orders (
-    order_id     VARCHAR(50),
-    customer_id  VARCHAR(50),
-    product_id   VARCHAR(50),
-    order_date   VARCHAR(20),   -- kept as text at bronze; parsed properly in silver
-    quantity     VARCHAR(20),
-    unit_price   VARCHAR(20)
-);
+DROP TABLE IF EXISTS bronze_superstore_raw;
 
-DROP TABLE IF EXISTS bronze_customers;
-CREATE TABLE bronze_customers (
+CREATE TABLE bronze_superstore_raw (
+    row_id        INTEGER,
+    order_id      VARCHAR(50),
+    order_date    VARCHAR(20),   -- kept as text at bronze; parsed in silver
+    ship_date     VARCHAR(20),
+    ship_mode     VARCHAR(50),
     customer_id   VARCHAR(50),
     customer_name VARCHAR(200),
-    region        VARCHAR(100),
-    segment       VARCHAR(100)
-);
-
-DROP TABLE IF EXISTS bronze_products;
-CREATE TABLE bronze_products (
-    product_id   VARCHAR(50),
-    product_name VARCHAR(200),
-    category     VARCHAR(100),
-    subcategory  VARCHAR(100)
+    segment       VARCHAR(50),
+    country       VARCHAR(100),
+    city          VARCHAR(100),
+    state         VARCHAR(100),
+    postal_code   VARCHAR(20),
+    region        VARCHAR(50),
+    product_id    VARCHAR(50),
+    category      VARCHAR(100),
+    sub_category  VARCHAR(100),
+    product_name  VARCHAR(300),
+    sales         VARCHAR(20),
+    quantity      VARCHAR(20),
+    discount      VARCHAR(20),
+    profit        VARCHAR(20)
 );

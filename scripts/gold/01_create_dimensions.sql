@@ -9,8 +9,10 @@ SELECT
     ROW_NUMBER() OVER (ORDER BY customer_id) AS customer_key,
     customer_id,
     customer_name,
+    segment,
     region,
-    segment
+    state,
+    city
 FROM silver_customers;
 
 DROP TABLE IF EXISTS dim_product;
@@ -21,7 +23,7 @@ SELECT
     product_id,
     product_name,
     category,
-    subcategory
+    sub_category
 FROM silver_products;
 
 DROP TABLE IF EXISTS dim_date;
